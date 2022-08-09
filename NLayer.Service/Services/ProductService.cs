@@ -23,4 +23,10 @@ public class ProductService:Service<Product>,IProductService
         var productsDto=_mapper.Map<List<ProductWithCategoryDto>>(products);
         return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200,productsDto);
     }
+    public async Task<List<ProductWithCategoryDto>> GetProductsWithCategories()
+    {
+        var products = await _productRepository.GetProductsWithCategory();
+        var productsDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
+        return productsDto;
+    }
 }
